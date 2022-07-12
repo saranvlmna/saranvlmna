@@ -4,7 +4,7 @@
 </div>
 
 <div align="center">
-  <a href="https://saranvlmna.github.io/saranvlmna/">
+  <a href="https://github.com/saranvlmna">
   <img  src="https://github.com/1999AZZAR/1999AZZAR/blob/main/resources/img/grid-snake.svg"
        alt="snake" /></a>
 </div>
@@ -36,11 +36,11 @@
     <h2 align="center"> 📊 Github stats </h2>
       <br/>
         <p align="center">
-          <a href="https://github.com/saranvlmna/">
+          <a href="https://github.com/saranvlmna">
           <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=saranvlmna&langs_count=6&theme=gruvbox&layout=compact&hide_border=true" alt="saranvlmna :: Top Langs" /></a>
         </p>
         <p align="center">
-          <a href="https://github.com/saranvlmna/">
+          <a href="https://github.com/saranvlmna">
           <img width="49.5%" src="https://github-readme-stats.vercel.app/api?username=saranvlmna&show_icons=true&theme=gruvbox&hide_border=true" />
           <img width="49.5%" src="https://github-readme-streak-stats.herokuapp.com/?user=saranvlmna&theme=gruvbox&hide_border=true" />
           </a>
