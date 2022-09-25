@@ -1,5 +1,24 @@
 {
   "dependencies": {
-    "firebase": "^9.8.1"
-  }
+    "firebase": "^9.8.1",
+    "prettier": "^2.7.1"
+  },
+  "name": "saranvlmna",
+  "description": "<div align=\"center\"> <h1 align=\"center\">Hi <img width=\"35\" src=\"https://github.com/saranvlmna/saranvlmna/blob/main/resources/img/waving.gif\">, I'm Saranjith </h1> <h4 align=\"center\">Self taught full stack developer</h4> </div>",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier:write": "prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saranvlmna/saranvlmna.git"
+  },
+  "author": "Saranjith P",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saranvlmna/saranvlmna/issues"
+  },
+  "homepage": "https://github.com/saranvlmna/saranvlmna#readme"
 }
