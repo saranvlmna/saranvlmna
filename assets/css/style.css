@@ -473,7 +473,7 @@ p {
 .skills .progress .skill {
   padding: 10px 0;
   margin: 0;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   display: block;
   font-weight: 600;
   font-family: "Poppins", sans-serif;
