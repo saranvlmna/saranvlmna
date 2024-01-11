@@ -33,7 +33,7 @@
     </p>
   </samp>
   <div>
-    <h2 align="center"> 📊 Github stats </h2>
+    <h2 align="center"> 📊 Github status </h2>
       <br/>
         <p align="center">
           <a href="https://github.com/saranvlmna">
