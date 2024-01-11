@@ -44,6 +44,6 @@
           <img width="49.5%" src="https://github-readme-stats.vercel.app/api?username=saranvlmna&show_icons=true&theme=gruvbox&hide_border=true" />
   </div>
   <p align="center">
-          <a href="https://github.com/Navya2ak">
+          <a href="https://github.com/saranvlmna">
           <img src="https://skillicons.dev/icons?i=js,ts,nodejs,express,nestjs,mongodb,postgres,flutter" /></a>
         </p>
