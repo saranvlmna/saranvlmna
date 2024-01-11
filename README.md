@@ -47,3 +47,7 @@
        </p>
      <br>
   </div>
+  <p align="center">
+          <a href="https://github.com/Navya2ak">
+          <img src="https://skillicons.dev/icons?i=js,ts,nodejs,express,nestjs,mongodb,flutter" /></a>
+        </p>
