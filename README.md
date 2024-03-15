@@ -4,11 +4,11 @@
 <h4 align="center">Self taught full stack developer</h4>
 </div>
 
-<div align="center">
+<!--<div align="center">
   <a href="https://github.com/saranvlmna">
   <img  src="https://github.com/1999AZZAR/1999AZZAR/blob/main/resources/img/grid-snake.svg"
        alt="snake" /></a>
-</div>
+</div>-->
 
   <samp>
     <h2 align="center">😎 you can reach me by:</h2>
