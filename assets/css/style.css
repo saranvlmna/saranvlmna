@@ -191,6 +191,12 @@ h6 {
   transition: 0.3s;
 }
 
+.btn-success.btn-sm {
+  border-radius: 27px;
+  font-size: 0.6rem;
+  padding: 2px 3px;
+}
+
 .nav-menu a i,
 .nav-menu a:focus i {
   font-size: 20px;
