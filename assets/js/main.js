@@ -43,7 +43,7 @@
   document.addEventListener("scroll", navbarlinksActive);
 
   /**
-   * Smooth scroll to element
+   * Smooth scroll
    */
   const scrollto = (el) => {
     let elementPos = select(el).offsetTop;
@@ -71,7 +71,6 @@
     function (e) {
       if (select(this.hash)) {
         e.preventDefault();
-
         let body = select("body");
         if (body.classList.contains("mobile-nav-active")) {
           body.classList.remove("mobile-nav-active");
@@ -84,6 +83,72 @@
     },
     true
   );
+
+  /**
+   * Back to top button
+   */
+  let backtotop = select(".back-to-top");
+  if (backtotop) {
+    const toggleBacktotop = () => {
+      if (window.scrollY > 400) {
+        backtotop.classList.add("active");
+      } else {
+        backtotop.classList.remove("active");
+      }
+    };
+    window.addEventListener("load", toggleBacktotop);
+    document.addEventListener("scroll", toggleBacktotop);
+  }
+
+  /**
+   * Hero mouse glow effect
+   */
+  let heroGlow = select("#heroGlow");
+  let heroSection = select("#hero");
+  if (heroGlow && heroSection) {
+    heroSection.addEventListener("mousemove", (e) => {
+      heroGlow.style.left = e.clientX + "px";
+      heroGlow.style.top = e.clientY + "px";
+      heroGlow.style.opacity = "1";
+    });
+    heroSection.addEventListener("mouseleave", () => {
+      heroGlow.style.opacity = "0";
+    });
+  }
+
+  /**
+   * Animated stat counters
+   */
+  const animateCounters = () => {
+    let counters = select(".stat-number", true);
+    counters.forEach((counter) => {
+      let target = parseInt(counter.getAttribute("data-count"));
+      let current = 0;
+      let increment = target / 60;
+      let timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          counter.textContent = target;
+          clearInterval(timer);
+        } else {
+          counter.textContent = Math.floor(current);
+        }
+      }, 25);
+    });
+  };
+
+  let statsSection = select(".stats");
+  let statsAnimated = false;
+  if (statsSection) {
+    document.addEventListener("scroll", () => {
+      if (statsAnimated) return;
+      let pos = statsSection.getBoundingClientRect();
+      if (pos.top < window.innerHeight && pos.bottom > 0) {
+        statsAnimated = true;
+        animateCounters();
+      }
+    });
+  }
 
   /**
    * Page load initialization
