@@ -10,8 +10,11 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - uses: actions/checkout@v4
+      # Pinned to a commit past @v0 (still tagged with the deprecated Node 20
+      # action runtime): https://github.com/FirebaseExtended/action-hosting-deploy/issues/457
+      # Revert to @v0 once a release ships with the Node 24 runtime bump.
+      - uses: FirebaseExtended/action-hosting-deploy@500ac625ca2dd40cbd15f7659af953801858032a
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_SARANCOM }}"
