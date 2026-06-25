@@ -7,7 +7,7 @@
     <title>Saranjith P | Senior Software Engineer</title>
     <meta
       name="description"
-      content="Saranjith P — Senior Software Engineer based in Kochi, Kerala. Full stack web developer specializing in Node.js, NestJS, and backend development."
+      content="Saranjith P — Senior Software Engineer based in Kochi, Kerala. An interactive terminal-style portfolio — type `help` to get started."
     />
     <meta
       name="google-site-verification"
@@ -17,28 +17,12 @@
     <link href="assets/img/icon.jpg" rel="icon" />
     <link href="assets/img/icon.jpg" rel="apple-touch-icon" />
 
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-
-    <link
-      href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <link href="assets/css/style.css" rel="stylesheet" />
 
     <script
       async
@@ -52,605 +36,756 @@
       gtag("js", new Date());
       gtag("config", "G-5GMER5S6KN");
     </script>
+
+    <style>
+      :root {
+        --bg: #0d0d0d;
+        --fg: #33ff66;
+        --accent: #9dff70;
+        --dim: #1f7a3a;
+        --white: #d8ffe0;
+        --prompt: #33ff66;
+        --glow: 0 0 14px rgba(157, 255, 112, 0.45);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #050505;
+        font-family: "JetBrains Mono", monospace;
+      }
+      @keyframes blink {
+        0%,
+        49% {
+          opacity: 1;
+        }
+        50%,
+        100% {
+          opacity: 0;
+        }
+      }
+      .term-page {
+        min-height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background: radial-gradient(ellipse at 50% 0%, #101010 0%, #050505 70%);
+      }
+      .term-window {
+        width: 100%;
+        max-width: 940px;
+        height: 84vh;
+        min-height: 520px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 12px;
+        overflow: hidden;
+        background: var(--bg);
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6),
+          0 0 0 1px rgba(255, 255, 255, 0.04);
+      }
+      .term-titlebar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 11px 16px;
+        background: rgba(255, 255, 255, 0.03);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        flex: none;
+      }
+      .term-dots {
+        display: flex;
+        gap: 8px;
+      }
+      .term-dot {
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        display: inline-block;
+      }
+      .term-titlebar-title {
+        flex: 1;
+        text-align: center;
+        font-size: 12.5px;
+        color: var(--dim);
+        font-weight: 500;
+        letter-spacing: 0.3px;
+      }
+      .term-titlebar-spacer {
+        width: 52px;
+      }
+      .term-scroll {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px 22px 26px;
+        font-size: 14px;
+        line-height: 1.65;
+        color: var(--white);
+        cursor: text;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .term-scroll::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+      }
+      .term-scroll::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .term-scroll::-webkit-scrollbar-thumb {
+        background: var(--dim);
+        border-radius: 10px;
+      }
+      .term-scroll a {
+        color: var(--accent);
+        text-decoration: none;
+        border-bottom: 1px dotted var(--dim);
+      }
+      .term-scroll a:hover {
+        color: var(--white);
+        border-bottom-color: var(--accent);
+      }
+      .term-block {
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+      .term-input-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 2px;
+      }
+      .term-prompt {
+        color: var(--prompt);
+        font-weight: 600;
+        flex: none;
+      }
+      .term-input-wrap {
+        position: relative;
+        flex: 1;
+        min-width: 0;
+      }
+      .term-input-echo {
+        color: var(--white);
+        white-space: pre;
+      }
+      .term-cursor {
+        display: inline-block;
+        width: 8px;
+        height: 16px;
+        background: var(--accent);
+        box-shadow: var(--glow);
+        vertical-align: middle;
+        margin-left: 1px;
+        animation: blink 1.05s steps(1) infinite;
+      }
+      .term-input {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: transparent;
+        caret-color: transparent;
+        font: inherit;
+        padding: 0;
+        margin: 0;
+      }
+    </style>
   </head>
 
   <body>
-    <!-- Back to Top -->
-    <a href="#hero" class="back-to-top scrollto"
-      ><i class="bi bi-arrow-up"></i
-    ></a>
-
-    <!-- Mobile Nav -->
-    <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
-
-    <!-- Header -->
-    <header id="header" class="d-flex flex-column justify-content-center">
-      <nav id="navbar" class="navbar nav-menu">
-        <ul>
-          <li>
-            <a href="#hero" class="nav-link scrollto active"
-              ><i class="bx bx-home"></i> <span>Home</span></a
-            >
-          </li>
-          <li>
-            <a href="#about" class="nav-link scrollto"
-              ><i class="bx bx-user"></i> <span>About</span></a
-            >
-          </li>
-          <li>
-            <a href="#experience" class="nav-link scrollto"
-              ><i class="bx bx-briefcase"></i> <span>Experience</span></a
-            >
-          </li>
-          <li>
-            <a href="#skills" class="nav-link scrollto"
-              ><i class="bx bx-code-alt"></i> <span>Skills</span></a
-            >
-          </li>
-          <li>
-            <a href="#contact" class="nav-link scrollto"
-              ><i class="bx bx-envelope"></i> <span>Contact</span></a
-            >
-          </li>
-        </ul>
-      </nav>
-    </header>
-
-    <!-- Hero -->
-    <section id="hero" class="d-flex flex-column justify-content-center">
-      <div class="hero-bg"></div>
-      <div class="hero-particles">
-        <span></span><span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span><span></span>
-      </div>
-      <div class="hero-glow" id="heroGlow"></div>
-      <div class="container" data-aos="fade-up" data-aos-duration="1200">
-        <p class="hero-greeting" data-aos="fade-down" data-aos-delay="200">
-          Hello, I'm
-        </p>
-        <h1 class="gradient-text" data-aos="fade-up" data-aos-delay="300">
-          Saranjith P
-        </h1>
-        <p class="hero-typed" data-aos="fade-up" data-aos-delay="400">
-          <span
-            class="typed"
-            data-typed-items="Senior Software Engineer, Full Stack Developer, Backend Specialist, Node.js Developer, NestJS Developer"
-          ></span>
-        </p>
-        <div class="social-links" data-aos="fade-up" data-aos-delay="500">
-          <a
-            href="https://github.com/saranvlmna"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            ><i class="bx bxl-github"></i
-          ></a>
-          <a
-            href="https://twitter.com/saran_vlmna"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Twitter"
-            ><i class="bx bxl-twitter"></i
-          ></a>
-          <a
-            href="https://www.linkedin.com/in/saranvlmna/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            ><i class="bx bxl-linkedin"></i
-          ></a>
-          <a
-            href="https://www.instagram.com/isjith/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-            ><i class="bx bxl-instagram"></i
-          ></a>
-          <a
-            href="https://medium.com/@saranvlmna"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Medium"
-            ><i class="bx bxl-medium"></i
-          ></a>
+    <div class="term-page">
+      <div class="term-window">
+        <div class="term-titlebar">
+          <div class="term-dots">
+            <span class="term-dot" style="background: #ff5f57"></span>
+            <span class="term-dot" style="background: #febc2e"></span>
+            <span class="term-dot" style="background: #28c840"></span>
+          </div>
+          <div class="term-titlebar-title">guest@saranjith: ~ — zsh</div>
+          <div class="term-titlebar-spacer"></div>
         </div>
-        <a href="#about" class="hero-scroll-btn scrollto">
-          <span></span>
-        </a>
-      </div>
-    </section>
 
-    <main id="main">
-      <!-- About -->
-      <section id="about" class="about">
-        <div class="container">
-          <div class="row align-items-center">
-            <div
-              class="col-lg-4 text-center"
-              data-aos="zoom-in"
-              data-aos-duration="1000"
-            >
-              <div class="about-img-wrapper">
-                <img
-                  src="assets/img/profile-img.jpg"
-                  class="img-fluid"
-                  alt="Saranjith P"
-                />
-              </div>
-              <p class="about-quote" data-aos="fade-up" data-aos-delay="200">
-                Work may become boring over time, but passion never fades — it
-                fuels you for a lifetime.
-              </p>
-            </div>
-
-            <div class="col-lg-8" data-aos="fade-left" data-aos-duration="1000">
-              <div class="about-content">
-                <h2 class="section-subtitle">About Me</h2>
-                <h3>Senior Software Engineer</h3>
-                <span class="about-location">
-                  <i class="bi bi-geo-alt-fill"></i> Infopark, Kochi
-                </span>
-
-                <p class="about-description">
-                  I'm a passionate and innovative software engineer with a deep
-                  love for turning ideas into functional, user-friendly
-                  applications. Being self-taught and having 4+ years of
-                  experience, I thrive on solving complex problems and creating
-                  elegant solutions that make a difference.
-                </p>
-
-                <div class="about-info-grid">
-                  <div
-                    class="about-info-item"
-                    data-aos="fade-up"
-                    data-aos-delay="100"
-                  >
-                    <i class="bi bi-telephone"></i>
-                    <div>
-                      <span class="info-label">Phone</span>
-                      <span class="info-value">+91 9526925448</span>
-                    </div>
-                  </div>
-                  <div
-                    class="about-info-item"
-                    data-aos="fade-up"
-                    data-aos-delay="200"
-                  >
-                    <i class="bi bi-envelope-at"></i>
-                    <div>
-                      <span class="info-label">Email</span>
-                      <span class="info-value">saranvlmna@gmail.com</span>
-                    </div>
-                  </div>
-                  <div
-                    class="about-info-item"
-                    data-aos="fade-up"
-                    data-aos-delay="300"
-                  >
-                    <i class="bi bi-house"></i>
-                    <div>
-                      <span class="info-label">Home Town</span>
-                      <span class="info-value">Kannur, Kerala</span>
-                    </div>
-                  </div>
-                  <div
-                    class="about-info-item"
-                    data-aos="fade-up"
-                    data-aos-delay="400"
-                  >
-                    <i class="bi bi-pin-map"></i>
-                    <div>
-                      <span class="info-label">Current Location</span>
-                      <span class="info-value">Kochi, Kerala</span>
-                    </div>
-                  </div>
-                </div>
-
-                <a
-                  download="Saranjith P resume.pdf"
-                  href="assets/img/Saranjith P resume.pdf"
-                  class="btn-download"
-                  data-aos="fade-up"
-                  data-aos-delay="500"
-                >
-                  <i class="bi bi-download"></i> Download CV
-                </a>
-              </div>
+        <div class="term-scroll" id="termScroll">
+          <div class="term-input-row" id="inputRow" style="display: none">
+            <span class="term-prompt" id="promptEl"></span>
+            <div class="term-input-wrap">
+              <span class="term-input-echo" id="inputEcho"></span
+              ><span class="term-cursor"></span>
+              <input
+                autocapitalize="off"
+                autocomplete="off"
+                autocorrect="off"
+                class="term-input"
+                id="termInput"
+                spellcheck="false"
+              />
             </div>
           </div>
-        </div>
-      </section>
-
-      <!-- Stats -->
-      <section class="stats">
-        <div class="container">
-          <div class="stats-grid">
-            <div class="stat-item" data-aos="zoom-in" data-aos-delay="0">
-              <div class="stat-icon"><i class="bi bi-calendar-check"></i></div>
-              <h3 class="stat-number" data-count="4">0</h3>
-              <span class="stat-plus">+</span>
-              <p>Years Experience</p>
-            </div>
-            <div class="stat-item" data-aos="zoom-in" data-aos-delay="150">
-              <div class="stat-icon"><i class="bi bi-building"></i></div>
-              <h3 class="stat-number" data-count="3">0</h3>
-              <span class="stat-plus"></span>
-              <p>Companies</p>
-            </div>
-            <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
-              <div class="stat-icon"><i class="bi bi-code-slash"></i></div>
-              <h3 class="stat-number" data-count="10">0</h3>
-              <span class="stat-plus">+</span>
-              <p>Technologies</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Experience -->
-      <section id="experience" class="experience">
-        <div class="container">
-          <div class="section-header" data-aos="fade-up">
-            <h2>Experience</h2>
-            <p>My professional journey</p>
-          </div>
-
-          <div class="timeline">
-            <div
-              class="timeline-item"
-              data-aos="fade-right"
-              data-aos-duration="800"
-            >
-              <div class="timeline-dot">
-                <div class="timeline-dot-ping"></div>
-              </div>
-              <div class="timeline-card">
-                <div class="timeline-header">
-                  <div>
-                    <h4>Senior Software Engineer</h4>
-                    <h5>Thought Minds</h5>
-                    <span class="timeline-location"
-                      ><i class="bi bi-geo-alt"></i> Kochi, Kerala</span
-                    >
-                  </div>
-                  <span class="timeline-date">Jan 2025 - Present</span>
-                </div>
-                <p>
-                  Leveraging AI to revolutionize software development with a
-                  unique Half Human + Half AI approach. Blending human
-                  creativity with AI precision, building advanced applications
-                  that improve efficiency and drive revenue growth.
-                </p>
-                <a
-                  href="https://www.thoughtminds.io/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="company-link"
-                >
-                  <i class="bi bi-box-arrow-up-right"></i> thoughtminds.io
-                </a>
-              </div>
-            </div>
-
-            <div
-              class="timeline-item"
-              data-aos="fade-left"
-              data-aos-duration="800"
-              data-aos-delay="200"
-            >
-              <div class="timeline-dot"></div>
-              <div class="timeline-card">
-                <div class="timeline-header">
-                  <div>
-                    <h4>Software Engineer</h4>
-                    <h5>Metric Tree Labs</h5>
-                    <span class="timeline-location"
-                      ><i class="bi bi-geo-alt"></i> Kochi, Kerala</span
-                    >
-                  </div>
-                  <span class="timeline-date">Oct 2022 - Dec 2024</span>
-                </div>
-                <p>
-                  Worked on custom software solutions, mobile application
-                  development, ERP solutions, website design, and MVP
-                  development. Delivered quality custom software application
-                  outputs to customers on time.
-                </p>
-                <a
-                  href="https://metrictreelabs.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="company-link"
-                >
-                  <i class="bi bi-box-arrow-up-right"></i> metrictreelabs.com
-                </a>
-              </div>
-            </div>
-
-            <div
-              class="timeline-item"
-              data-aos="fade-right"
-              data-aos-duration="800"
-              data-aos-delay="400"
-            >
-              <div class="timeline-dot"></div>
-              <div class="timeline-card">
-                <div class="timeline-header">
-                  <div>
-                    <h4>Software Engineer</h4>
-                    <h5>Codelattice Digital Solutions Pvt Ltd</h5>
-                    <span class="timeline-location"
-                      ><i class="bi bi-geo-alt"></i> Calicut, Kerala</span
-                    >
-                  </div>
-                  <span class="timeline-date">Aug 2021 - Oct 2022</span>
-                </div>
-                <p>
-                  Contributed to a global digital technology agency with a
-                  Tech-First approach. Worked across web development, mobile
-                  applications, ecommerce, and cloud computing for clients
-                  worldwide with a team of 200+ technocrats spanning 8 global
-                  offices.
-                </p>
-                <a
-                  href="https://www.codelattice.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="company-link"
-                >
-                  <i class="bi bi-box-arrow-up-right"></i> codelattice.com
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Skills -->
-      <section id="skills" class="skills">
-        <div class="container">
-          <div class="section-header" data-aos="fade-up">
-            <h2>Skills</h2>
-            <p>Technologies I work with</p>
-          </div>
-
-          <div class="skills-grid">
-            <div
-              class="skill-category"
-              data-aos="flip-left"
-              data-aos-duration="800"
-            >
-              <div class="skill-icon"><i class="bi bi-code-slash"></i></div>
-              <h4>Languages</h4>
-              <div class="skill-tags">
-                <span class="skill-tag">TypeScript</span>
-                <span class="skill-tag">JavaScript</span>
-                <span class="skill-tag">Python</span>
-              </div>
-            </div>
-
-            <div
-              class="skill-category"
-              data-aos="flip-right"
-              data-aos-duration="800"
-              data-aos-delay="150"
-            >
-              <div class="skill-icon"><i class="bi bi-server"></i></div>
-              <h4>Backend</h4>
-              <div class="skill-tags">
-                <span class="skill-tag">Node.js</span>
-                <span class="skill-tag">Express.js</span>
-                <span class="skill-tag">NestJS</span>
-              </div>
-            </div>
-
-            <div
-              class="skill-category"
-              data-aos="flip-left"
-              data-aos-duration="800"
-              data-aos-delay="300"
-            >
-              <div class="skill-icon"><i class="bi bi-hdd-stack"></i></div>
-              <h4>Databases</h4>
-              <div class="skill-tags">
-                <span class="skill-tag">MongoDB</span>
-                <span class="skill-tag">DynamoDB</span>
-                <span class="skill-tag">MySQL</span>
-                <span class="skill-tag">PostgreSQL</span>
-              </div>
-            </div>
-
-            <div
-              class="skill-category"
-              data-aos="flip-right"
-              data-aos-duration="800"
-              data-aos-delay="450"
-            >
-              <div class="skill-icon"><i class="bi bi-diagram-3"></i></div>
-              <h4>Architecture</h4>
-              <div class="skill-tags">
-                <span class="skill-tag">Microservices</span>
-                <span class="skill-tag">Multitenant</span>
-                <span class="skill-tag">Git</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Contact -->
-      <section id="contact" class="contact">
-        <div class="container">
-          <div class="section-header" data-aos="fade-up">
-            <h2>Get In Touch</h2>
-            <p>Let's work together</p>
-          </div>
-
-          <div class="row">
-            <div
-              class="col-lg-4"
-              data-aos="fade-right"
-              data-aos-duration="1000"
-            >
-              <div class="contact-cards">
-                <div class="contact-card">
-                  <i class="bi bi-geo-alt"></i>
-                  <h4>Location</h4>
-                  <p>Vilamana, Iritty<br />Kannur, Kerala 670703</p>
-                </div>
-                <a href="mailto:saranvlmna@gmail.com" class="contact-card">
-                  <i class="bi bi-envelope"></i>
-                  <h4>Email</h4>
-                  <p>saranvlmna@gmail.com</p>
-                </a>
-                <a href="tel:9526925448" class="contact-card">
-                  <i class="bi bi-phone"></i>
-                  <h4>Call</h4>
-                  <p>+91 9526925448</p>
-                </a>
-              </div>
-            </div>
-
-            <div class="col-lg-8" data-aos="fade-left" data-aos-duration="1000">
-              <form id="submit-form" class="contact-form">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-floating">
-                      <input
-                        type="text"
-                        name="name"
-                        class="form-control"
-                        id="name"
-                        placeholder="Your Name"
-                        required
-                      />
-                      <label for="name">Your Name</label>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-floating">
-                      <input
-                        type="email"
-                        class="form-control"
-                        name="email"
-                        id="email"
-                        placeholder="Your Email"
-                        required
-                      />
-                      <label for="email">Your Email</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-floating">
-                  <textarea
-                    class="form-control"
-                    name="message"
-                    id="message"
-                    placeholder="Message"
-                    required
-                    style="height: 150px"
-                  ></textarea>
-                  <label for="message">Your Message</label>
-                </div>
-                <button type="submit">
-                  <i class="bi bi-send"></i> Send Message
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- Footer -->
-    <footer id="footer">
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-social">
-            <a
-              href="https://github.com/saranvlmna"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><i class="bx bxl-github"></i
-            ></a>
-            <a
-              href="https://twitter.com/saran_vlmna"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><i class="bx bxl-twitter"></i
-            ></a>
-            <a
-              href="https://www.linkedin.com/in/saranvlmna/"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><i class="bx bxl-linkedin"></i
-            ></a>
-            <a
-              href="https://www.instagram.com/isjith/"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><i class="bx bxl-instagram"></i
-            ></a>
-            <a
-              href="https://medium.com/@saranvlmna"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><i class="bx bxl-medium"></i
-            ></a>
-          </div>
-          <a
-            href="https://coff.ee/saranjith"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="coffee-btn"
-          >
-            <i class="bi bi-cup-hot-fill"></i> Buy me a coffee
-          </a>
-          <p class="copyright">
-            &copy;
-            <script>
-              document.write(new Date().getFullYear());
-            </script>
-            Saranjith P. All Rights Reserved.
-          </p>
         </div>
       </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    </div>
 
     <script>
-      $("#submit-form").submit((e) => {
-        e.preventDefault();
-        var btn = $("#submit-form button[type=submit]");
-        btn
-          .prop("disabled", true)
-          .html('<i class="bi bi-hourglass-split"></i> Sending...');
-        $.ajax({
-          url: "https://script.google.com/macros/s/AKfycbwE0IJ3VuPf3zOy_yohLGq1T3CPv5CgDRLJ0ai47iRu9yNbOrk/exec",
-          data: $("#submit-form").serialize(),
-          method: "post",
-          success: function (response) {
-            btn.html('<i class="bi bi-check-circle"></i> Sent!');
-            setTimeout(function () {
-              btn
-                .prop("disabled", false)
-                .html('<i class="bi bi-send"></i> Send Message');
-            }, 3000);
-            document.getElementById("submit-form").reset();
+      (function () {
+        const scrollEl = document.getElementById("termScroll");
+        const inputRow = document.getElementById("inputRow");
+        const inputEcho = document.getElementById("inputEcho");
+        const inputEl = document.getElementById("termInput");
+        const promptEl = document.getElementById("promptEl");
+
+        const themes = {
+          matrix: {
+            bg: "#0d0d0d",
+            fg: "#33ff66",
+            accent: "#9dff70",
+            dim: "#1f7a3a",
+            white: "#d8ffe0",
+            prompt: "#33ff66"
           },
-          error: function (err) {
-            btn
-              .prop("disabled", false)
-              .html('<i class="bi bi-send"></i> Send Message');
-            alert("Something went wrong. Please try again.");
+          tokyo: {
+            bg: "#1a1b26",
+            fg: "#a9b1d6",
+            accent: "#7aa2f7",
+            dim: "#3b4261",
+            white: "#c0caf5",
+            prompt: "#bb9af7"
+          },
+          gruvbox: {
+            bg: "#282828",
+            fg: "#ebdbb2",
+            accent: "#fabd2f",
+            dim: "#665c54",
+            white: "#fbf1c7",
+            prompt: "#fe8019"
+          },
+          solarized: {
+            bg: "#fdf6e3",
+            fg: "#586e75",
+            accent: "#268bd2",
+            dim: "#93a1a1",
+            white: "#073642",
+            prompt: "#268bd2"
+          }
+        };
+
+        const promptStr = "guest@saranjith:~$";
+        const history = [];
+        let histIdx = 0;
+        const cmdList = [
+          "about",
+          "experience",
+          "skills",
+          "projects",
+          "contact",
+          "socials",
+          "resume",
+          "neofetch",
+          "theme",
+          "banner",
+          "clear",
+          "help"
+        ];
+        let curTheme = "matrix";
+
+        const data = {
+          name: "Saranjith P",
+          role: "Senior Software Engineer",
+          location: "Kochi, Kerala, India",
+          hometown: "Kannur, Kerala",
+          email: "saranvlmna@gmail.com",
+          phone: "+91 9526925448",
+          cv: "assets/img/Saranjith%20P%20resume.pdf",
+          socials: [
+            ["GitHub", "https://github.com/saranvlmna"],
+            ["LinkedIn", "https://www.linkedin.com/in/saranvlmna/"],
+            ["Twitter/X", "https://twitter.com/saran_vlmna"],
+            ["Instagram", "https://www.instagram.com/isjith/"],
+            ["Medium", "https://medium.com/@saranvlmna"],
+            ["Coffee ☕", "https://coff.ee/saranjith"]
+          ],
+          exp: [
+            [
+              "Senior Software Engineer",
+              "Thought Minds",
+              "Kochi, Kerala",
+              "Jan 2025 — Present",
+              "Leveraging AI to revolutionize software development with a Half Human + Half AI approach. Blending human creativity with AI precision to build advanced applications that improve efficiency and drive revenue growth.",
+              "https://www.thoughtminds.io/"
+            ],
+            [
+              "Software Engineer",
+              "Metric Tree Labs",
+              "Kochi, Kerala",
+              "Oct 2022 — Dec 2024",
+              "Built custom software solutions, mobile apps, ERP systems, website design and MVP development. Delivered quality outputs to customers on time.",
+              "https://metrictreelabs.com/"
+            ],
+            [
+              "Software Engineer",
+              "Codelattice Digital Solutions",
+              "Calicut, Kerala",
+              "Aug 2021 — Oct 2022",
+              "Contributed to a global Tech-First agency across web, mobile, ecommerce and cloud computing for worldwide clients alongside 200+ technocrats spanning 8 offices.",
+              "https://www.codelattice.com/"
+            ]
+          ],
+          skills: {
+            Languages: ["TypeScript", "JavaScript", "Python"],
+            Backend: ["Node.js", "Express.js", "NestJS"],
+            Databases: ["MongoDB", "DynamoDB", "MySQL", "PostgreSQL"],
+            Architecture: ["Microservices", "Multitenant", "Git"]
+          }
+        };
+
+        const banner = `███████╗ █████╗ ██████╗  █████╗ ███╗   ██╗     ██╗██╗████████╗██╗  ██╗
+██╔════╝██╔══██╗██╔══██╗██╔══██╗████╗  ██║     ██║██║╚══██╔══╝██║  ██║
+███████╗███████║██████╔╝███████║██╔██╗ ██║     ██║██║   ██║   ███████║
+╚════██║██╔══██║██╔══██╗██╔══██║██║╚██╗██║██   ██║██║   ██║   ██╔══██║
+███████║██║  ██║██║  ██║██║  ██║██║ ╚████║╚█████╔╝██║   ██║   ██║  ██║
+╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚════╝ ╚═╝   ╚═╝   ╚═╝  ╚═╝`;
+
+        function c(text, color) {
+          return `<span style="color:${color}">${text}</span>`;
+        }
+
+        function push(html) {
+          const block = document.createElement("div");
+          block.className = "term-block";
+          block.innerHTML = html;
+          scrollEl.insertBefore(block, inputRow);
+          scrollEl.scrollTop = scrollEl.scrollHeight;
+        }
+
+        function clearBlocks() {
+          Array.from(scrollEl.children).forEach((el) => {
+            if (el !== inputRow) scrollEl.removeChild(el);
+          });
+        }
+
+        function applyTheme(name) {
+          const t = themes[name] || themes.matrix;
+          const r = document.documentElement.style;
+          r.setProperty("--bg", t.bg);
+          r.setProperty("--fg", t.fg);
+          r.setProperty("--accent", t.accent);
+          r.setProperty("--dim", t.dim);
+          r.setProperty("--white", t.white);
+          r.setProperty("--prompt", t.prompt);
+          r.setProperty("--glow", `0 0 14px ${t.accent}55`);
+          curTheme = name;
+        }
+
+        function printIntro() {
+          push(
+            `<pre style="margin:0;font-size:clamp(6px,1.55vw,12.5px);line-height:1.05;color:var(--accent);text-shadow:var(--glow);overflow-x:auto;white-space:pre;">${banner}</pre>`
+          );
+          push(
+            `<div style="margin-top:10px;">` +
+              c(`Hi, I'm ${data.name} — ${data.role}.`, "var(--white)") +
+              `<br/>` +
+              c(
+                "Self-taught engineer who turns ideas into functional, elegant software.",
+                "var(--dim)"
+              ) +
+              `<br/><br/>` +
+              c("Type ", "var(--dim)") +
+              c("help", "var(--accent)") +
+              c(" to list commands, or try ", "var(--dim)") +
+              c("about", "var(--accent)") +
+              c(" · ", "var(--dim)") +
+              c("experience", "var(--accent)") +
+              c(" · ", "var(--dim)") +
+              c("neofetch", "var(--accent)") +
+              `</div>`
+          );
+        }
+
+        function ready() {
+          inputRow.style.display = "flex";
+          setTimeout(() => inputEl.focus(), 60);
+        }
+
+        function boot() {
+          applyTheme("matrix");
+          const steps = [
+            c("saranOS", "var(--accent)") +
+              " " +
+              c("4.0.1 (tty1) — booting…", "var(--dim)"),
+            c("[  OK  ]", "var(--fg)") +
+              " Mounted " +
+              c("/home/saran", "var(--white)"),
+            c("[  OK  ]", "var(--fg)") +
+              " Started " +
+              c("Passion Daemon", "var(--white)"),
+            c("[  OK  ]", "var(--fg)") +
+              " Loaded " +
+              c("4+ years of experience", "var(--white)"),
+            c("[  OK  ]", "var(--fg)") +
+              " Reached target " +
+              c("Portfolio", "var(--white)")
+          ];
+          steps.forEach((line, i) => {
+            setTimeout(() => push(line), 230 * (i + 1));
+          });
+          setTimeout(() => {
+            push("&nbsp;");
+            printIntro();
+            ready();
+          }, 230 * (steps.length + 1) + 180);
+        }
+
+        function out_help() {
+          const items = [
+            ["about", "who I am"],
+            ["experience", "work history"],
+            ["skills", "my tech stack"],
+            ["projects", "what I build"],
+            ["contact", "get in touch"],
+            ["socials", "find me online"],
+            ["resume", "download my CV"],
+            ["neofetch", "system info card"],
+            ["theme", "switch color theme"],
+            ["banner", "print the logo"],
+            ["clear", "clear the screen"],
+            ["help", "this list"]
+          ];
+          const rows = items
+            .map(
+              ([cmd, desc]) =>
+                `<div style="display:flex;gap:14px;"><span style="color:var(--accent);min-width:120px;font-weight:600;">${cmd}</span><span style="color:var(--dim);">${desc}</span></div>`
+            )
+            .join("");
+          return `<div style="margin:6px 0;">${c(
+            "Available commands",
+            "var(--white)"
+          )}<div style="margin-top:8px;display:flex;flex-direction:column;gap:3px;">${rows}</div><div style="margin-top:10px;color:var(--dim);">tip: ↑/↓ for history · Tab to autocomplete</div></div>`;
+        }
+
+        function out_about() {
+          return (
+            `<div style="margin:6px 0;max-width:680px;">` +
+            c("$ cat about.txt", "var(--dim)") +
+            `<br/><br/>` +
+            c(
+              "I'm a passionate and innovative software engineer with a deep love for turning ideas into functional, user-friendly applications. Being self-taught with 4+ years of experience, I thrive on solving complex problems and crafting elegant solutions that make a difference.",
+              "var(--white)"
+            ) +
+            `<br/><br/>` +
+            `<span style="color:var(--dim);font-style:italic;">"Work may become boring over time, but passion never fades — it fuels you for a lifetime."</span>` +
+            `<div style="margin-top:14px;display:flex;flex-direction:column;gap:2px;">` +
+            `<span><span style="color:var(--accent);">role     </span> ${data.role}</span>` +
+            `<span><span style="color:var(--accent);">based    </span> ${data.location}</span>` +
+            `<span><span style="color:var(--accent);">hometown </span> ${data.hometown}</span>` +
+            `<span><span style="color:var(--accent);">status   </span> open to interesting problems</span>` +
+            `</div></div>`
+          );
+        }
+
+        function out_experience() {
+          const cards = data.exp
+            .map(
+              (e) =>
+                `<div style="margin-top:14px;padding-left:14px;border-left:2px solid var(--dim);">` +
+                `<div><span style="color:var(--accent);font-weight:600;">${e[0]}</span> <span style="color:var(--dim);">@</span> <a href="${e[5]}" target="_blank" rel="noopener">${e[1]}</a></div>` +
+                `<div style="color:var(--dim);font-size:12.5px;margin:2px 0 6px;">${e[2]} · ${e[3]}</div>` +
+                `<div style="color:var(--white);max-width:680px;">${e[4]}</div>` +
+                `</div>`
+            )
+            .join("");
+          return `<div style="margin:6px 0;">${c(
+            "$ git log --author='Saranjith'",
+            "var(--dim)"
+          )}${cards}</div>`;
+        }
+
+        function out_skills() {
+          const groups = Object.entries(data.skills)
+            .map(([g, arr]) => {
+              const chips = arr
+                .map(
+                  (s) =>
+                    `<span style="display:inline-block;padding:2px 10px;border:1px solid var(--dim);border-radius:4px;color:var(--white);font-size:13px;">${s}</span>`
+                )
+                .join(" ");
+              return `<div style="margin-top:12px;"><div style="color:var(--accent);font-weight:600;margin-bottom:6px;">${g}</div><div style="display:flex;flex-wrap:wrap;gap:8px;">${chips}</div></div>`;
+            })
+            .join("");
+          return `<div style="margin:6px 0;">${c(
+            "$ ls ~/skills",
+            "var(--dim)"
+          )}${groups}</div>`;
+        }
+
+        function out_projects() {
+          return (
+            `<div style="margin:6px 0;max-width:680px;">` +
+            c("$ ls ~/work", "var(--dim)") +
+            `<br/><br/>` +
+            c(
+              "My day-to-day work lives across product teams — AI-driven applications, custom ERP & MVP builds, ecommerce and cloud platforms.",
+              "var(--white)"
+            ) +
+            `<br/><br/>` +
+            `<div style="display:flex;flex-direction:column;gap:6px;">` +
+            `<span><span style="color:var(--accent);">→</span> AI-powered applications &amp; developer tooling <span style="color:var(--dim);">@ Thought Minds</span></span>` +
+            `<span><span style="color:var(--accent);">→</span> Custom ERP, MVPs &amp; mobile apps <span style="color:var(--dim);">@ Metric Tree Labs</span></span>` +
+            `<span><span style="color:var(--accent);">→</span> Ecommerce &amp; cloud platforms <span style="color:var(--dim);">@ Codelattice</span></span>` +
+            `</div>` +
+            `<div style="margin-top:12px;color:var(--dim);">Browse the code → <a href="https://github.com/saranvlmna" target="_blank" rel="noopener">github.com/saranvlmna</a></div>` +
+            `</div>`
+          );
+        }
+
+        function out_contact() {
+          return (
+            `<div style="margin:6px 0;">${c(
+              "$ cat contact.txt",
+              "var(--dim)"
+            )}<div style="margin-top:8px;display:flex;flex-direction:column;gap:4px;">` +
+            `<span><span style="color:var(--accent);">email   </span> <a href="mailto:${data.email}">${data.email}</a></span>` +
+            `<span><span style="color:var(--accent);">phone   </span> <a href="tel:${data.phone.replace(
+              /\s/g,
+              ""
+            )}">${data.phone}</a></span>` +
+            `<span><span style="color:var(--accent);">location</span> Vilamana, Iritty · Kannur, Kerala 670703</span>` +
+            `</div></div>`
+          );
+        }
+
+        function out_socials() {
+          const rows = data.socials
+            .map(
+              (s) =>
+                `<div><span style="color:var(--accent);display:inline-block;min-width:110px;">${
+                  s[0]
+                }</span><a href="${
+                  s[1]
+                }" target="_blank" rel="noopener">${s[1].replace(
+                  /^https?:\/\//,
+                  ""
+                )}</a></div>`
+            )
+            .join("");
+          return `<div style="margin:6px 0;">${c(
+            "$ whois saranjith",
+            "var(--dim)"
+          )}<div style="margin-top:8px;display:flex;flex-direction:column;gap:3px;">${rows}</div></div>`;
+        }
+
+        function out_resume() {
+          window.open(data.cv, "_blank");
+          return `<div style="margin:6px 0;">${c(
+            "→ Opening résumé in a new tab…",
+            "var(--white)"
+          )}<br/><span style="color:var(--dim);">If it didn't open: </span><a href="${
+            data.cv
+          }" target="_blank" rel="noopener">download CV (PDF)</a></div>`;
+        }
+
+        function out_neofetch() {
+          const avatar = `    ._______________.
+    |  ___________  |
+    | |           | |
+    | |   >_      | |
+    | |           | |
+    | |___________| |
+    |_______________|
+      \\___________/
+   ._______________________.
+   '-----------------------'`;
+          const info = [
+            [
+              "",
+              `<span style="color:var(--prompt);font-weight:700;">guest@saranjith</span>`
+            ],
+            ["", `<span style="color:var(--dim);">────────────────</span>`],
+            ["OS", "saranOS 4.0.1"],
+            ["Role", data.role],
+            ["Uptime", "4+ years"],
+            ["Shell", "zsh"],
+            ["Stack", "Node.js · NestJS · TypeScript"],
+            ["DB", "MongoDB · DynamoDB · SQL"],
+            ["Companies", "Thought Minds · MetricTree · Codelattice"],
+            ["Location", data.location],
+            ["Theme", curTheme || "matrix"]
+          ]
+            .map(([k, v]) =>
+              k
+                ? `<div><span style="color:var(--accent);display:inline-block;min-width:92px;">${k}</span>${v}</div>`
+                : `<div>${v}</div>`
+            )
+            .join("");
+          const swatches = [
+            "#ff5f57",
+            "#febc2e",
+            "#28c840",
+            "var(--accent)",
+            "var(--fg)",
+            "var(--white)"
+          ]
+            .map(
+              (cw) =>
+                `<span style="width:16px;height:16px;background:${cw};display:inline-block;border-radius:3px;"></span>`
+            )
+            .join("");
+          return (
+            `<div style="margin:8px 0;display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start;">` +
+            `<pre style="margin:0;color:var(--accent);font-size:12px;line-height:1.15;text-shadow:var(--glow);">${avatar}</pre>` +
+            `<div style="display:flex;flex-direction:column;gap:2px;font-size:13.5px;">${info}<div style="display:flex;gap:6px;margin-top:8px;">${swatches}</div></div>` +
+            `</div>`
+          );
+        }
+
+        function out_banner() {
+          return `<pre style="margin:6px 0;font-size:clamp(6px,1.55vw,12.5px);line-height:1.05;color:var(--accent);text-shadow:var(--glow);overflow-x:auto;white-space:pre;">${banner}</pre>`;
+        }
+
+        function out_theme(arg) {
+          const names = Object.keys(themes);
+          if (arg && names.includes(arg)) {
+            applyTheme(arg);
+            return c(`✓ theme → ${arg}`, "var(--accent)");
+          }
+          if (arg) {
+            return (
+              c(`unknown theme: ${arg}`, "#ff6b6b") +
+              c(`  ·  available: ${names.join(", ")}`, "var(--dim)")
+            );
+          }
+          const cur = curTheme || "matrix";
+          const idx = (names.indexOf(cur) + 1) % names.length;
+          applyTheme(names[idx]);
+          return `<div>${c(
+            `✓ theme → ${names[idx]}`,
+            "var(--accent)"
+          )}<br/><span style="color:var(--dim);">cycle again with </span><span style="color:var(--accent);">theme</span><span style="color:var(--dim);">, or pick: ${names.join(
+            " · "
+          )}</span></div>`;
+        }
+
+        function run(raw) {
+          const cmd = raw.trim();
+          push(
+            `<div style="display:flex;gap:8px;"><span style="color:var(--prompt);font-weight:600;flex:none;">${promptStr}</span><span style="color:var(--white);white-space:pre-wrap;word-break:break-word;">${cmd.replace(
+              /</g,
+              "&lt;"
+            )}</span></div>`
+          );
+          if (!cmd) return;
+          history.push(cmd);
+          histIdx = history.length;
+          const [name, ...rest] = cmd.split(/\s+/);
+          const arg = rest.join(" ").toLowerCase();
+          const n = name.toLowerCase();
+
+          if (n === "clear") {
+            clearBlocks();
+            return;
+          }
+          const map = {
+            help: out_help,
+            about: out_about,
+            experience: out_experience,
+            skills: out_skills,
+            projects: out_projects,
+            contact: out_contact,
+            socials: out_socials,
+            resume: out_resume,
+            cv: out_resume,
+            neofetch: out_neofetch,
+            banner: out_banner,
+            whoami: () => c("saranjith — " + data.role, "var(--white)"),
+            ls: () => c(cmdList.join("   "), "var(--accent)"),
+            pwd: () => c("/home/saran", "var(--white)"),
+            echo: () => c(arg || "", "var(--white)"),
+            sudo: () =>
+              c(
+                "nice try 😏 — you already have everything you need here.",
+                "var(--dim)"
+              ),
+            date: () => c(new Date().toString(), "var(--white)")
+          };
+          if (n === "theme") {
+            push(out_theme(arg));
+            return;
+          }
+          if (map[n]) {
+            push(map[n]());
+            return;
+          }
+          push(
+            `<div>${c(
+              `command not found: ${name.replace(/</g, "&lt;")}`,
+              "#ff6b6b"
+            )}  ${c("— type ", "var(--dim)")}${c(
+              "help",
+              "var(--accent)"
+            )}</div>`
+          );
+        }
+
+        function updateEcho() {
+          inputEcho.textContent = inputEl.value;
+        }
+
+        inputEl.addEventListener("input", updateEcho);
+
+        inputEl.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            const v = inputEl.value;
+            inputEl.value = "";
+            updateEcho();
+            run(v);
+          } else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            if (history.length) {
+              histIdx = Math.max(0, histIdx - 1);
+              inputEl.value = history[histIdx] || "";
+              updateEcho();
+            }
+          } else if (e.key === "ArrowDown") {
+            e.preventDefault();
+            if (history.length) {
+              histIdx = Math.min(history.length, histIdx + 1);
+              inputEl.value = history[histIdx] || "";
+              updateEcho();
+            }
+          } else if (e.key === "Tab") {
+            e.preventDefault();
+            const cur = inputEl.value.trim().toLowerCase();
+            if (!cur) return;
+            const match = cmdList.filter((cd) => cd.startsWith(cur));
+            if (match.length === 1) {
+              inputEl.value = match[0];
+              updateEcho();
+            } else if (match.length > 1) {
+              push(c(match.join("   "), "var(--dim)"));
+            }
+          } else if (e.key === "l" && e.ctrlKey) {
+            e.preventDefault();
+            clearBlocks();
           }
         });
-      });
+
+        scrollEl.addEventListener("click", () => inputEl.focus());
+
+        promptEl.textContent = promptStr;
+
+        boot();
+      })();
     </script>
   </body>
 </html>
