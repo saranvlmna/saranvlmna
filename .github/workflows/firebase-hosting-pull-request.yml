@@ -9,6 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # Node >=22.23.0 / >=24.17.0 broke a node-fetch@2 assumption that
+      # gaxios/google-auth-library (used by firebase-tools) still relies on,
+      # causing spurious "Premature close" errors during OAuth token fetch:
+      # https://github.com/nodejs/node/issues/63989
+      # Pin to a pre-regression version until upstream (node-fetch/gaxios) fixes it.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24.16.0"
       # Pinned to a commit past @v0 (still tagged with the deprecated Node 20
       # action runtime): https://github.com/FirebaseExtended/action-hosting-deploy/issues/457
       # Revert to @v0 once a release ships with the Node 24 runtime bump.
