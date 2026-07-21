@@ -1,2 +1,4 @@
 .eslintignore
 .nyc_output
+index.html
+support.js
