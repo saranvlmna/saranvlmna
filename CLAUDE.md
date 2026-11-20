@@ -17,8 +17,8 @@ Personal website for **Saranjith P**, Senior Software Engineer based in Kochi, K
 
 ## Design system (keep consistent)
 
-- Tokens on `:root`: `--bg #F3ECE0` (beige), `--ink #2A2620`, `--muted #5E564A`, `--accent #8A4B2A`, `--line #D9CFBD` (dividers), `--chip #8C8270` (skill tag outline). Text on the accent button is `#FFFFFF`.
-- Extra tokens: `--accent-dark #74401F` (pressed/hover), `--accent-tint` (outline button hover), `--gutter` (20px or the iPhone safe-area inset, whichever is larger).
+- Tokens on `:root`: `--bg #F3ECE0` (beige), `--ink #2A2620`, `--muted #5E564A`, `--accent #2F6B3F`, `--line #D9CFBD` (dividers), `--chip #8C8270` (skill tag outline). Text on the accent button is `#FFFFFF`.
+- Extra tokens: `--accent-dark #25562F` (pressed/hover), `--accent-tint` (outline button hover), `--gutter` (20px or the iPhone safe-area inset, whichever is larger).
 - **Mobile is the priority** (most visitors are on phones). CSS is mobile-first, with `min-width` breakpoints layered on top:
   - Base (phones): 680px max column, `--gutter` side padding, sections split by a 1px divider with 36px vertical padding. Buttons are full width and 52px tall; contact rows 64px.
   - `>= 640px` (tablet): buttons shrink to auto width (48px); experience entries put the period in a left column.
