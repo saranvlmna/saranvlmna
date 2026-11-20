@@ -68,6 +68,8 @@
   .period{font-size:14px;color:var(--muted)}
   .role-title{font-size:20px;line-height:1.25}
   .company{font-weight:500;color:var(--accent)}
+  .company a{display:inline-flex;align-items:center;min-height:44px;margin:-12px 0;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:4px;touch-action:manipulation}
+  .company a:active{color:var(--accent-dark)}
   .job p{margin:6px 0 0;color:var(--muted)}
   .links{display:flex;flex-direction:column;border-bottom:1px solid var(--line)}
   .links a{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px;padding:10px 0;border-top:1px solid var(--line);touch-action:manipulation}
@@ -90,6 +92,7 @@
     .btn:hover{background:var(--accent-dark);border-color:var(--accent-dark)}
     .btn-outline:hover{background:var(--accent-tint);color:var(--accent-dark);border-color:var(--accent)}
     .links a:hover .label{color:var(--accent)}
+    .company a:hover{color:var(--accent-dark);text-decoration-color:currentColor}
   }
 
   /* ---------- Tablet and up ---------- */
@@ -164,25 +167,25 @@
       <div class="job">
         <div class="period">Sep 2026 to now</div>
         <div class="role-title">AI Engineer</div>
-        <div class="company">Wipro</div>
+        <div class="company"><a href="https://www.wipro.com/" target="_blank" rel="noopener">Wipro</a></div>
         <p>Design and build agentic AI workflows on Orkes Conductor, orchestrating LLM calls, AI agents and system integrations as durable, observable workflows. Integrate LLM-powered tasks into those workflows, covering task design, error handling, retries and monitoring.</p>
       </div>
       <div class="job">
         <div class="period">Jan 2025 to now</div>
         <div class="role-title">Senior Software Engineer</div>
-        <div class="company">Thought Minds</div>
+        <div class="company"><a href="https://www.thoughtminds.ai/" target="_blank" rel="noopener">Thought Minds</a></div>
         <p>Moved from core backend work into AI engineering, building generative AI and agentic AI systems.</p>
       </div>
       <div class="job">
         <div class="period">Oct 2022 to Dec 2024</div>
         <div class="role-title">Software Engineer</div>
-        <div class="company">Metric Tree Labs</div>
+        <div class="company"><a href="https://www.metrictreelabs.com/" target="_blank" rel="noopener">Metric Tree Labs</a></div>
         <p>Built backends for client products, including custom software, mobile apps, ERP systems and MVPs.</p>
       </div>
       <div class="job">
         <div class="period">Aug 2021 to Oct 2022</div>
         <div class="role-title">Software Engineer</div>
-        <div class="company">Codelattice Digital Solutions</div>
+        <div class="company"><a href="https://www.codelattice.com/" target="_blank" rel="noopener">Codelattice Digital Solutions</a></div>
         <p>Started in core backend engineering across web, mobile, ecommerce and cloud projects for clients worldwide.</p>
       </div>
     </div>
