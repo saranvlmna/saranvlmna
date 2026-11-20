@@ -1,47 +1,46 @@
-# Saranjith P — Portfolio
+# Saranjith P — Personal website
 
-Personal portfolio site for **Saranjith P**, Senior Software Engineer based in Kochi, Kerala. Single-page, single-file design.
+Personal website for **Saranjith P**, Senior Software Engineer based in Kochi, Kerala. A single, calm, mobile-first page. This file is the design spec.
+
+## Files (keep the repo to just these)
+
+- `index.html` — the whole site.
+- `assets/img/icon.jpg` (favicon + link-preview image), `assets/files/saranjith-p-resume.pdf` (resume download).
+- `firebase.json`, `.firebaserc`, `.github/workflows/` — Firebase Hosting config and the deploy workflows.
+- `googlec66316644bd404d3.html` — Google Search Console ownership file; do not delete.
 
 ## Stack & structure
 
-- **One file:** `index.html` — a self-contained "Design Component" page. It opens directly in a browser; `support.js` is the runtime and is auto-generated (never edit it).
-- The file has two parts:
-  - **Template** — the markup between `<x-dc>` and `</x-dc>`.
-  - **Logic class** — a `<script type="text/x-dc" data-dc-script>` block containing `class Component extends DCLogic { … }`. All content data (projects, skills, experience, writing, socials) lives in `renderVals()`.
-- **No build step, no npm required to run it.** Fonts load from Google Fonts. `support.js` is a small dependency-free templating runtime (no React/CDN) — it walks the `<x-dc>` tree once at load, evaluating `{{ expr }}` interpolations and `<sc-for each="item in vals.list">` loops against the object `renderVals()` returns, then mounts the result in place. Do not add imports; the runtime provides everything the Component class needs.
+- **One static file:** `index.html` with all CSS in a `<style>` block in `<head>`. No framework, no build step, no templating runtime, no JavaScript for the page itself (the only script is the Google Analytics tag).
+- Content is plain HTML. To change copy, skills, experience or contact links, edit the markup directly.
+- Fonts from Google Fonts: Space Grotesk (500, 700) for headings, Inter (400, 500, 600) for body.
 
 ## Design system (keep consistent)
 
-- **Theme:** clean & light. Background `#f6f6f1`, ink text `oklch(0.24 0.012 150)`, forest-green accent `oklch(0.5 0.11 150)`.
-- **Fonts:** Space Grotesk (headings), Manrope (body), IBM Plex Mono (labels/meta/tags).
-- **Styling is inline only.** No CSS classes or stylesheets except the `<helmet><style>` block (`:root` custom properties, resets, `@keyframes`, `.reveal`, and the small set of attribute-selector rules needed for things inline `style` can't express: `[data-card]:hover` lift, `[data-btn]:hover` opacity, `[data-navlink]:hover`, `:focus-visible`). Match existing inline-style patterns when adding elements; reference the `--*` custom properties defined in `:root` rather than hardcoding colors.
-- **Sections (in order):** Hero → keyword strip → 01/About + Skills → 02/Projects → 03/Experience → 04/Writing → 05/Contact → Footer.
-- Cards use `#fdfdfa` (`--card`) bg, `1px` hairline border (`--border`), soft shadow (`--shadow`), `translateY(-4px)` hover lift via `[data-card]:hover`.
-- Scroll-reveal: add `class="reveal"` to any element that should fade/slide in on scroll (handled by the IntersectionObserver in `componentDidMount`).
-- Responsiveness has no `@media` breakpoints — every grid uses `repeat(auto-fit/auto-fill, minmax(...))` and flex containers use `flex-wrap: wrap`, so layouts reflow to mobile naturally. Keep new layouts to this pattern instead of adding breakpoints.
+- Tokens on `:root`: `--bg #F3ECE0` (beige), `--ink #2A2620`, `--muted #5E564A`, `--accent #8A4B2A`, `--line #D9CFBD` (dividers), `--chip #8C8270` (skill tag outline). Text on the accent button is `#FFFFFF`.
+- Extra tokens: `--accent-dark #74401F` (pressed/hover), `--accent-tint` (outline button hover), `--gutter` (20px or the iPhone safe-area inset, whichever is larger).
+- **Mobile is the priority** (most visitors are on phones). CSS is mobile-first, with `min-width` breakpoints layered on top:
+  - Base (phones): 680px max column, `--gutter` side padding, sections split by a 1px divider with 36px vertical padding. Buttons are full width and 52px tall; contact rows 64px.
+  - `>= 640px` (tablet): buttons shrink to auto width (48px); experience entries put the period in a left column.
+  - `>= 960px` (laptop): 1040px column; each section becomes a two-column grid (sticky `h2` on the left at 200px, content in `.body` on the right); body text 17px.
+  - Heading sizes scale fluidly with `clamp()`.
+- Hover styles live only inside `@media (hover:hover)` so phones never get stuck hover states; phones get `:active` feedback instead.
+- Pills: button radius 24-26px, skill tags radius 20px. Every tappable element is at least 44px tall.
+- **No** cards, shadows, gradients, emoji, menu, header bar, dark mode (`color-scheme: light only`), projects section, or animations beyond smooth scrolling.
+- After layout changes, check 320, 360, 375, 390, 414 and 430px for no horizontal scroll, then 768 and 1280px.
 
-## Editing content
+## Sections (in order)
 
-All copy and data live in `renderVals()` in the logic class. To update projects, experience, skills, writing, or social links, edit the arrays there — the template renders them via `<sc-for>` loops.
-
-- **Projects** are currently placeholders (`Project Aurora`, `Project Northwind`, `Project Harbor`) — replace titles, descriptions, tech, and repo/live URLs with real ones.
-- **Writing** entries are real posts, but most `link` values still point at the Medium profile (`https://medium.com/@saranvlmna`) as a placeholder — swap in each post's real permalink as you publish it. The "Hoisting in JavaScript" entry already has its real URL.
-- **Experience** entries are real (Thought Minds, Metric Tree Labs, Codelattice Digital Solutions).
+Intro (name, role, location, one-line summary, "Get in touch" button) → Skills (outlined pill tags) → Experience (period, title, company, one-line description) → Contact (one line + Email / LinkedIn / GitHub rows) → Footer.
 
 ## Real details
 
-- Name: Saranjith P · Email: saranvlmna@gmail.com · Location: Kochi, Kerala (from Kannur)
+- Name: Saranjith P · Email: saranvlmna@gmail.com · Location: Kochi, Kerala, India
 - LinkedIn: linkedin.com/in/saranvlmna · GitHub: github.com/saranvlmna · Medium: medium.com/@saranvlmna · Instagram: instagram.com/isjith
-- Self-taught, 5+ years experience.
-- Resume download lives at `assets/files/saranjith-p-resume.pdf`, linked from the Contact section.
+- 5+ years of experience (backend, now generative and agentic AI). Experience: Wipro (AI Engineer, Sep 2026 to now; Orkes Conductor agentic AI workflows), Thought Minds (Senior Software Engineer, Jan 2025 to now), Metric Tree Labs (Software Engineer, Oct 2022 to Dec 2024), Codelattice Digital Solutions (Software Engineer, Aug 2021 to Oct 2022).
+- Resume PDF lives at `assets/files/saranjith-p-resume.pdf`, linked by the outlined "Download resume" button at the end of the Contact section. Replace that file to update it.
 
 ## Hosting
 
-- Firebase Hosting serves the repo root (`firebase.json`); the catch-all rewrite points `**` at `/index.html`.
-
-## Conventions
-
-- Keep it a single page and a single file (plus `support.js` and static assets under `assets/`).
-- Preserve responsiveness: layouts use `clamp()` and `auto-fit`/`auto-fill` grids — test at mobile widths after changes.
-- Don't introduce new accent colors; derive shades from the forest-green accent in `oklch`.
-- No emoji.
+- Firebase Hosting serves the repo root (`firebase.json`); the catch-all rewrite points `**` at `/index.html`. Dotfiles and `*.md` files are excluded from hosting. Deploys run from GitHub Actions on push to `main`.
+- Keep `google-site-verification` and the Open Graph meta tags in `<head>` (link previews on WhatsApp/LinkedIn).
